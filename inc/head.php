@@ -246,13 +246,11 @@
     }
   </style>    
   
-  <!-- Defer this script only if JavaScript is enabled -->
-  <noscript>
-  <link rel="preload" href="css/default.css" as="style">
-  </noscript>
-  
-  <!-- If JavaScript is enabled, enable the deferred script here -->
-  <link rel="stylesheet" id="defaultCSS">
+  <!-- If JavaScript is enabled, defer script here -->
+  <link rel="preload" href="css/default.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+  <!-- Fallback to normal loading if JavaScript is not enabled -->
+  <noscript><link rel="stylesheet" href="css/default.css"></noscript>  
   
   <!-- Defer JavaScript so the DOM can continue loading -->
   <script defer src="js/default.js"></script>
