@@ -13,7 +13,7 @@ A responsive redesign of the official Arikitek homepage found under http://ariki
 * load images based on screen dpi
 
 ### Improved maintainability ###
-* modulised using php
+* modularised using php
 
 ### Design ###
 * fully responsive
