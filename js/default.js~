@@ -2,6 +2,13 @@
 
 window.addEventListener('DOMContentLoaded', (event) => {
   /**
+   * Include stylesheet which was deferred
+   */
+  let defaultCSS = document.getElementById('defaultCSS');
+  defaultCSS.href = 'css/default.css';
+  
+  
+  /**
    * Reveal E-Mail for Humans
    */
   let electronicMessage = document.getElementById('electronicMessage');

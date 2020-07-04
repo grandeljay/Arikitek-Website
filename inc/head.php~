@@ -247,7 +247,7 @@
   </style>    
   
   <!-- If JavaScript is enabled, defer script here -->
-  <link rel="preload" href="css/default.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="css/default.css" as="style" id="defaultCSS">
 
   <!-- Fallback to normal loading if JavaScript is not enabled -->
   <noscript><link rel="stylesheet" href="css/default.css"></noscript>  
