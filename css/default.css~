@@ -270,6 +270,14 @@ a.fallbackUnlink {
   text-decoration: none;
 }
 
+a#electronicMessage .at:before {
+  content: '@';
+}
+
+a#electronicMessage .dot:before {
+  content: '.';
+}
+
 a:hover {
   text-decoration: none;
 }
@@ -349,6 +357,12 @@ table tr:last-of-type > * {
   padding-bottom: 1rem;
 }
 
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1em;  
+}
+
 fieldset div > * {
   width: 100%;
   box-sizing: border-box;
@@ -389,7 +403,7 @@ ul li {
   text-indent: -1em;
 }
 
-ul li::before {
+ul li:before {
   content: '';
   margin: 0 0.6em 0.2em 0;
   display: inline-block;
@@ -437,8 +451,20 @@ aside#imagePreview #imageText a#scrollDown,
 aside#imagePreview #imageText a#scrollUp,
 header #logo a#menuToggle {           
   display: none;
-
+  
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
+}
+
+header #logo img {        
+  max-width: 100%;
+  max-height: 24px;
+  
+  font-size: 24px;
 }
 
 header nav {
@@ -462,7 +488,7 @@ header nav > ul li {
   position: relative;
 }
 
-header nav ul li::before {         
+header nav ul li:before {         
   content: unset;
 }
 
@@ -471,39 +497,34 @@ header nav > ul li a {
   text-decoration: none;
 }
 
-header nav > ul > li.icon a::before {   
+header nav > ul > li.icon a:before {   
   background-repeat: no-repeat;
   vertical-align: middle;
   margin-bottom: 0.2em;
 }
 
-header nav ul > li.home > a::before {  
+header nav ul > li.home > a:before {
   background-image: url('../img/icon/home.png');
-  background-image: url('../img/icon/home.webp');
   background-image: url('../img/icon/home.svg');
 }
 
-header nav ul > li.whatwedo > a::before {  
+header nav ul > li.whatwedo > a:before {
   background-image: url('../img/icon/what-we-do.png');
-  background-image: url('../img/icon/what-we-do.webp');
   background-image: url('../img/icon/what-we-do.svg');
 }
 
-header nav ul > li.opsapp > a::before {  
+header nav ul > li.opsapp > a:before {
   background-image: url('../img/icon/opsapp-white.png');
-  background-image: url('../img/icon/opsapp-white.webp');
   background-image: url('../img/icon/opsapp-white.svg');
 }
 
-header nav ul > li.aboutus > a::before {  
+header nav ul > li.aboutus > a:before {
   background-image: url('../img/icon/about-us.png');
-  background-image: url('../img/icon/about-us.webp');
   background-image: url('../img/icon/about-us.svg');
 }
 
-header nav ul > li.contactus > a::before {  
+header nav ul > li.contactus > a:before {
   background-image: url('../img/icon/contact-us.png');
-  background-image: url('../img/icon/contact-us.webp');
   background-image: url('../img/icon/contact-us.svg');
 }
 
@@ -535,7 +556,7 @@ header nav > ul li a:hover {
 /**
  * Icons
  */
-#main .icon::before {   
+#main .icon:before {   
   display: inline-block;
   width: 1em;
   height: 1em;
@@ -548,23 +569,21 @@ header nav > ul li a:hover {
   margin-bottom: 0.12em;  
 }
 
-#main .icon.white::before {
+#main .icon.white:before {
   color: var(--colourWhite);
 }
 
-#main .icon.black::before {
+#main .icon.black:before {
   color: var(--colourBlack);
 }
 
-#main .icon.white.close::before {  
+#main .icon.white.close:before {
   background-image: url('../img/icon/close-white.png');
-  background-image: url('../img/icon/close-white.webp');
   background-image: url('../img/icon/close-white.svg');
 }
 
-#main .icon.black.close::before {
+#main .icon.black.close:before {
   background-image: url('../img/icon/close-black.png');
-  background-image: url('../img/icon/close-black.webp');
   background-image: url('../img/icon/close-black.svg');
 }
 
@@ -581,7 +600,7 @@ header nav > ul li a:hover {
   background-color: #88de00ee;
 }
 
-.message h2::before {
+.message h2:before {
   content: '';
   display: inline-block;
   width: 1em;
@@ -595,16 +614,14 @@ header nav > ul li a:hover {
   background-size: 1em;
 }
 
-.message#spamProtection h2::before,
-.message#outdatedBrowser h2::before {   
+.message#spamProtection h2:before,
+.message#outdatedBrowser h2:before {   
   background-image: url(../img/icon/unavailable.png);
-  background-image: url(../img/icon/unavailable.webp);
   background-image: url(../img/icon/unavailable.svg);
 }
 
-.message.success h2::before {
+.message.success h2:before {
   background-image: url(../img/icon/check.png);
-  background-image: url(../img/icon/check.webp);
   background-image: url(../img/icon/check.svg);
 }
 
@@ -863,15 +880,13 @@ footer {
     display: inline-block;
   }   
 
-  header #logo.menu a#menuToggle::before {
+  header #logo.menu a#menuToggle:before {
     background-image: url('../img/icon/menu-black.png');
-    background-image: url('../img/icon/menu-black.webp');    
     background-image: url('../img/icon/menu-black.svg');
   } 
   
-  header.open #logo.menu a#menuToggle::before {    
+  header.open #logo.menu a#menuToggle:before {
     background-image: url('../img/icon/close-black.png');
-    background-image: url('../img/icon/close-black.webp');
     background-image: url('../img/icon/close-black.svg');
   } 
   

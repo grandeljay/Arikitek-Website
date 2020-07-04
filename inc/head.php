@@ -112,8 +112,8 @@
       padding: 24px;
     }
 
-    header #logo.icon > a:before,
-    header nav > ul li.icon > a:before {
+    header #logo.icon > a::before,
+    header nav > ul li.icon > a::before {
       content: '';
       display: inline-block;
       width: 24px;
@@ -138,6 +138,20 @@
       margin: 4rem 0;
       padding: 4rem;            
     }
+
+    a#electronicMessage .at::before {
+      content: '@';
+    }
+
+    a#electronicMessage .dot::before {
+      content: '.';
+    }    
+    
+    form {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-gap: 1em;  
+    }    
     
     fieldset {
       padding: 0;
@@ -196,7 +210,28 @@
     }
 
     @media(max-width: 1024px) {
-
+      fieldset div {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+      }
+      
+      fieldset div legend {
+        grid-column: auto;
+        grid-row: 3 / 4;
+      }
+      
+      fieldset div p,
+      fieldset div button {
+        grid-column-start: 1;
+      }
+      
+      button {
+        max-width: unset;
+      }
+      
+      label {
+        padding: 0;
+      }      
     }
 
     @media(max-width: 768px) {
@@ -225,6 +260,10 @@
         grid-column: 1 / 2;
       }
       
+      header #logo.menu a#menuToggle {
+        display: inline-block;
+      }   
+      
       footer {
         grid-row: 3 / 4;
         grid-column: 1 / 2;
@@ -247,10 +286,12 @@
   </style>    
   
   <!-- If JavaScript is enabled, defer script here -->
-  <link rel="preload" href="css/default.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="stylesheet" href="css/default.css" id="defaultCSS">
 
   <!-- Fallback to normal loading if JavaScript is not enabled -->
-  <noscript><link rel="stylesheet" href="css/default.css"></noscript>  
+  <noscript>
+  <link rel="stylesheet" href="css/default.css">
+  </noscript>  
   
   <!-- Defer JavaScript so the DOM can continue loading -->
   <script defer src="js/default.js"></script>
