@@ -35,4 +35,5 @@ A responsive redesign of the official Arikitek homepage found under http://ariki
 * protection against email scrapers
 * honeypot against email spammers
 
+## Lighthouse audit ##
 ![Lighthouse audit](http://grandel.bplaced.net/arikitek/img/lighthouse-score-2.png)
