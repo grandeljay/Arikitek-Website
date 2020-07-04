@@ -9,6 +9,8 @@ A responsive redesign of the official Arikitek homepage found under http://ariki
 * defer CSS/JS
 * optimised images (.webp)
 * load images based on screen dpi
+* ![Lighthouse audit](http://grandel.bplaced.net/arikitek/img/lighthouse-score-1.png)
+* ![Lighthouse audit](http://grandel.bplaced.net/arikitek/img/lighthouse-score-2.png)
 
 ### Improved maintainability ###
 * modulised using php
