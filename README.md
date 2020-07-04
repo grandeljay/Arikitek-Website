@@ -3,7 +3,6 @@
 A responsive redesign of the official Arikitek homepage found under http://arikitek.com/.
 
 ![Lighthouse audit](http://grandel.bplaced.net/arikitek/img/lighthouse-score-1.png)
-![Lighthouse audit](http://grandel.bplaced.net/arikitek/img/lighthouse-score-2.png)
 
 
 ## Features ##
@@ -35,3 +34,5 @@ A responsive redesign of the official Arikitek homepage found under http://ariki
 ### Security ###
 * protection against email scrapers
 * honeypot against email spammers
+
+![Lighthouse audit](http://grandel.bplaced.net/arikitek/img/lighthouse-score-2.png)
