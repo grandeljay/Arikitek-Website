@@ -27,7 +27,7 @@ A responsive redesign of the official Arikitek homepage found under http://ariki
 
 ### Accessible ###
 * works with screen readers (untested)
-* designed according to (https://en.wikipedia.org/wiki/Web_Content_Accessibility_Guidelines)[WCAG]
+* designed according to [WCAG]: https://en.wikipedia.org/wiki/Web_Content_Accessibility_Guidelines
 
 ### Security ###
 * protection against email scrapers
