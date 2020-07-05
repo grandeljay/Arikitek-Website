@@ -23,6 +23,7 @@ A responsive redesign of the official Arikitek homepage found under http://ariki
 * lightbox for images
 * responsive images (change based on viewport)
 * fallback for disabled JS
+* scroll to top and go straight to menu buttons
 
 ### SEO ###
 * semantic markup
