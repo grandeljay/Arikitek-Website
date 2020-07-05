@@ -35,7 +35,7 @@ A responsive redesign of the official Arikitek homepage found under http://ariki
 * protection against email scrapers
 * honeypot against email spammers
 
-### Open Graph Data ###
+### Open Graph Protocol ###
 * When sharing the website link, software (like Instant Messengers and Social Networks) will show the name, logo and a short description which was defined instead of an automatically generated one, preventing random images, text or words in the preview.
 
 ## Lighthouse audit ##
