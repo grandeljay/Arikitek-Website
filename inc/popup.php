@@ -1,3 +1,6 @@
+<?php
+?>
+
 <aside id="imagePreview">    
     <img id="imageClose" src="img/icon/close-black.png" alt="Close" loading="eager" decoding="auto" tabstop="0">
     
