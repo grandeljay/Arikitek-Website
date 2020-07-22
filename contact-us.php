@@ -14,9 +14,9 @@ if(isset($_POST['message'])) {
     'from' => $_POST['name'] . '<' . $_POST['email'] . '>',
   );
   $_GLOBALS['isSpam'] = isset($_POST['additional']) && strlen($_POST['additional']) > 0 ? true : false;
-
+  
   if($_GLOBALS['isSpam'] === true) {
-
+    
   }
   elseif($_GLOBALS['isSpam'] === false) {
     mail($to, $subject, $message, $additional_headers);
@@ -26,10 +26,10 @@ if(isset($_POST['message'])) {
 
 <head>
     <title>Contact us - Arikitek - creators of OpsApp</title>
-
+    
     <?php
     include_once 'inc/head.php';
-    ?>
+    ?>    
 </head>
 
 <body>
@@ -45,11 +45,11 @@ if(isset($_POST['message'])) {
                 ?>
             </nav>
         </header>
-
-        <div id="main">
+        
+        <div id="main">               
           <main>
               <h1>Contact us</h1>
-
+              
               <?php
               include_once 'inc/compatibility.php';
               ?>
@@ -60,7 +60,7 @@ if(isset($_POST['message'])) {
               <section id="spamProtection" class="skew message warning">
                   <h2>Something went wrong</h2>
                   <p>Our spam protection has triggered against your request. If you are not a robot please contact us directly via email.</p>
-              </section>
+              </section> 
               <?php
               }
               elseif($_GLOBALS['isSpam'] === false) {
@@ -69,19 +69,19 @@ if(isset($_POST['message'])) {
                   <h2>Success</h2>
                   <p>Your request is being processed. Thank you for contacting us!</p>
                   <p>We will try to get back to you as soon as possible.</p>
-              </section>
+              </section>             
               <?php
               }
               ?>
-
+               
               <section class="skew">
                   <h2>General enquiries</h2>
-                  <p><a class="electronicMessage fallbackUnlink" data-href="aW5mb0BhcmlraXRlay5jb20=" tabindex="0">info<span class="at"></span>arikitek<span class="dot"></span>com</a></p>
+                  <p><a id="electronicMessage" class="fallbackUnlink" data-href="aW5mb0BhcmlraXRlay5jb20=" tabindex="0">info<span class="at"></span>arikitek<span class="dot"></span>com</a></p>
               </section>
-
-              <section class="skew">
+              
+              <section class="skew">                
                   <h2>Contact form</h2>
-
+                  
                   <!--
                   < In terms of accessibility the div containers need to be removed
                   < but grid will break then
@@ -94,15 +94,15 @@ if(isset($_POST['message'])) {
                         <input id="company" name="company" type="text">
                       </div>
                     </fieldset>
-
+                    
                     <fieldset>
                       <div>
                        <legend>Please enter your name.</legend>
                         <label for="name">Name</label>
-                        <input id="name" name="name" type="text" required>
+                        <input id="name" name="name" type="text" required>                      
                       </div>
                     </fieldset>
-
+                    
                     <fieldset>
                       <div>
                         <legend>Please enter your email address.</legend>
@@ -110,7 +110,7 @@ if(isset($_POST['message'])) {
                         <input id="email" name="email" type="email" required>
                       </div>
                     </fieldset>
-
+                    
                     <fieldset>
                       <div>
                         <legend>Please enter a message.</legend>
@@ -118,11 +118,11 @@ if(isset($_POST['message'])) {
                         <textarea id="message" name="message" required></textarea>
                       </div>
                     </fieldset>
-
+                    
                     <fieldset>
                       <div>
                         <legend>Do you agree to the terms mentioned?</legend>
-                        <label for="consent">Consent</label>
+                        <label for="consent">Consent</label>                    
                         <p>
                           <label>
                             <input id="consent" name="consent" type="checkbox" required>
@@ -131,31 +131,31 @@ if(isset($_POST['message'])) {
                         </p>
                       </div>
                     </fieldset>
-
-                    <fieldset class="additional" hidden aria-hidden="true">
+                    
+                    <fieldset class="additional" hidden aria-hidden="true">                      
                       <textarea id="additional" name="additional" autocomplete="false"></textarea>
                     </fieldset>
-
+                    
                     <fieldset>
                       <div>
                         <legend>Submit the form in order to contact us.</legend>
                         <label for="submit">Finish</label>
-                        <button id="submit" type="submit">Send</button>
+                        <button id="submit" type="submit">Send</button>                      
                       </div>
                     </fieldset>
                   </form>
               </section>
           </main>
-
+          
           <?php
           include_once 'inc/popup.php';
           ?>
-
+          
           <?php
           include_once 'inc/back-to-top.php';
-          ?>
+          ?>                      
         </div>
-
+        
         <footer>
             <?php
             include_once 'inc/footer.php';
@@ -164,4 +164,4 @@ if(isset($_POST['message'])) {
     </div>
 </body>
 
-</html>
+</html> 
