@@ -91,7 +91,7 @@ if(isset($_POST['message'])) {
                       <div>
                         <legend>Please enter the company you work for.</legend>
                         <label for="company">Company</label>
-                        <input id="company" name="company" type="text">
+                        <input id="company" name="company" type="text" autocomplete="organization">
                       </div>
                     </fieldset>
 
@@ -99,7 +99,7 @@ if(isset($_POST['message'])) {
                       <div>
                        <legend>Please enter your name.</legend>
                         <label for="name">Name</label>
-                        <input id="name" name="name" type="text" required>
+                        <input id="name" name="name" type="text" required autocomplete="name">
                       </div>
                     </fieldset>
 
@@ -107,7 +107,7 @@ if(isset($_POST['message'])) {
                       <div>
                         <legend>Please enter your email address.</legend>
                         <label for="email">Email address</label>
-                        <input id="email" name="email" type="email" required>
+                        <input id="email" name="email" type="email" required autocomplete="email">
                       </div>
                     </fieldset>
 
