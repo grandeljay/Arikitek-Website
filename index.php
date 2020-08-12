@@ -8,10 +8,10 @@ $_GLOBALS['file'] = basename(__FILE__);
 
 <head>
     <title>Arikitek - creators of OpsApp</title>
-    
+
     <?php
     include_once 'inc/head.php';
-    ?>    
+    ?>
 </head>
 
 <body>
@@ -27,40 +27,42 @@ $_GLOBALS['file'] = basename(__FILE__);
                 ?>
             </nav>
         </header>
-        
+
         <div id="main">
           <main>
               <h1>Home</h1>
-              
+
               <?php
               include_once 'inc/compatibility.php';
               ?>
-               
+
               <section class="skew">
+                <div class="content">
                   <h2>Arikitek</h2>
                   <p>Arikitek is a technology company headquartered in Düsseldorf, Germany.</p>
-                  <p>Arikitek are the creators of OpsApp - an innovative approach to managing your smart phone Address Book.</p>                 
+                  <p>Arikitek are the creators of OpsApp - an innovative approach to managing your smart phone Address Book.</p>
                   <p>
                     <a class="popup" href="img/opsapp-logo.png" data-caption="OpsApp" data-description="This is the logo for the OpsApp.">
                       <picture>
                         <source srcset="img/opsapp-logo.webp" type="image/webp">
                         <source srcset="img/opsapp-logo.png" type="image/png">
                         <img src="img/opsapp-logo.png" alt="OpsApp logo">
-                      </picture>                  
+                      </picture>
                     </a>
                   </p>
+                </div>
               </section>
           </main>
-          
+
           <?php
           include_once 'inc/popup.php';
           ?>
-          
+
           <?php
           include_once 'inc/back-to-top.php';
-          ?>                      
+          ?>
         </div>
-        
+
         <footer>
             <?php
             include_once 'inc/footer.php';
@@ -69,4 +71,4 @@ $_GLOBALS['file'] = basename(__FILE__);
     </div>
 </body>
 
-</html> 
+</html>

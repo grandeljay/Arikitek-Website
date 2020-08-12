@@ -75,11 +75,14 @@ if(isset($_POST['message'])) {
               ?>
 
               <section class="skew">
+                <div class="content">
                   <h2>General enquiries</h2>
                   <p><a class="electronicMessage fallbackUnlink" data-href="aW5mb0BhcmlraXRlay5jb20=" tabindex="0">info<span class="at"></span>arikitek<span class="dot"></span>com</a></p>
+                </div>
               </section>
 
               <section class="skew">
+                <div class="content">
                   <h2>Contact form</h2>
 
                   <!--
@@ -144,6 +147,7 @@ if(isset($_POST['message'])) {
                       </div>
                     </fieldset>
                   </form>
+                </div>
               </section>
           </main>
 
