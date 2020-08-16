@@ -7,35 +7,35 @@ require_once 'inc/functions.php';
 <html lang="en">
 <head>
   <?php
-    require_once 'inc/head.php';
+    require_once ADMIN_ROOT . '/inc/head.php';
   ?>
 </head>
 <body>
   <?php
-    require_once 'inc/authenticate.php';
+    require_once ADMIN_ROOT . '/inc/authenticate.php';
   ?>
-  
+
   <?php
     $_SESSION['username'] = $_SESSION['email'];
-  ?>  
-  
+  ?>
+
   <header>
     <?php
-      require_once 'inc/navigation.php';
-    ?>  
+      require_once ADMIN_ROOT . '/inc/navigation.php';
+    ?>
   </header>
-   
+
   <main>
     <h1>Users</h1>
-    
+
     <?php
-      require_once 'inc/messages.php';
-    ?>  
-    
+      require_once ADMIN_ROOT . '/inc/messages.php';
+    ?>
+
     <p>Hello <?php echo $_SESSION['username']; ?>.</p>
-    
+
     <section class="block">
-      <h2>All users</h2>      
+      <h2>All users</h2>
       <?php
       /**
        * Get Users
@@ -49,7 +49,7 @@ require_once 'inc/functions.php';
       );
       ?>
       <p>There are currently <?php echo count($usersArray); ?> users registered.</p>
-      
+
       <table>
       <thead>
       <tr>
@@ -57,11 +57,11 @@ require_once 'inc/functions.php';
       foreach ($usersArray[0] as $key => $value) {
         if (!in_array($key, $skipColumns)) {
           echo '<th>';
-          
+
           if (!is_numeric($key)) {
             echo $key;
           }
-          
+
           echo '</th>';
         }
       }
@@ -71,33 +71,33 @@ require_once 'inc/functions.php';
       <tbody>
       <?php
       foreach ($usersArray as $rowArray) {
-      
+
         echo '<tr>';
 
         foreach ($rowArray as $key => $value) {
           if (!in_array($key, $skipColumns)) {
             echo '<td>';
-            
+
             if (!is_numeric($key)) {
               echo $value;
             }
-            
+
             echo '</td>';
           }
         }
 
         echo '</tr>';
-      
+
       }
       ?>
       </tbody>
       </table>
     </section>
-    
+
     <section class="block">
       <h2>Verification status</h2>
       <p>Select a user you would like to verify or unverify.</p>
-      
+
       <?php
       /**
        * Get unverified users
@@ -106,8 +106,8 @@ require_once 'inc/functions.php';
       $users = $dbh->prepare($sql);
       $users->execute();
       $usersArray = $users->fetchAll();
-      
-      
+
+
       /**
        * Change verification
        */
@@ -115,7 +115,7 @@ require_once 'inc/functions.php';
         if (isset($_POST['userVerfiy'])) {
           $result = databaseQuery("UPDATE users SET verified = " . $_POST['verificationStatus'] . " WHERE email = '" . $_POST['user'] . "';");
           $verificationStatus = $_POST['verificationStatus'] ? 'Verified' : 'Unverified';
-          
+
           if ($result) {
             echo '<p>User ' . $_POST['user'] . ' verification successfully set to ' . $verificationStatus . '.</p>';
           }
@@ -125,7 +125,7 @@ require_once 'inc/functions.php';
         }
       }
       ?>
-      
+
       <form method="post">
         <input type="hidden" name="userVerfiy">
         <input list="users" name="user" autocomplete="off" type="email" required>
@@ -136,22 +136,22 @@ require_once 'inc/functions.php';
           }
           ?>
         </datalist>
-        
+
         <select required name="verificationStatus">
           <option value="1">Verify</option>
           <option value="0">Unverify</option>
         </select>
-        
+
         <button type="submit">Change verification of user</button>
       </form>
       <?php
       ?>
     </section>
   </main>
-  
+
   <footer>
     <?php
-      require_once 'inc/footer.php';
+      require_once ADMIN_ROOT . '/inc/footer.php';
     ?>
   </footer>
 </body>

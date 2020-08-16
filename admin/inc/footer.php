@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER['PHP_SELF'] != '/login.php') {
+if ( $_SERVER['SCRIPT_NAME'] != '/login.php' && isset( $_SESSION ) ) {
   /**
    * Session output
    */

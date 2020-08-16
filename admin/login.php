@@ -7,12 +7,12 @@ require_once 'inc/functions.php';
 <html lang="en">
 <head>
   <?php
-    require_once 'inc/head.php';
+    require_once ADMIN_ROOT . '/inc/head.php';
   ?>
 </head>
 <body id="pageLogin">
   <?php
-    require_once 'inc/authenticate.php';
+    require_once ADMIN_ROOT . '/inc/authenticate.php';
   ?>
 
   <?php
@@ -62,7 +62,7 @@ require_once 'inc/functions.php';
       /**
        * Error Messages
        */
-      if (!$loginSuccessfull) {
+      if ( !$loginSuccessfull ) {
         $GLOBALS['messages'][] = array(
           'heading' => 'Failure',
           'message' => 'Log in attempt failed.',
@@ -70,7 +70,7 @@ require_once 'inc/functions.php';
         );
       }
 
-      if (!$isVerified) {
+      if ( !$isVerified ) {
         $GLOBALS['messages'][] = array(
           'heading' => 'Failure',
           'message' => 'You are not verified.',
@@ -136,7 +136,7 @@ require_once 'inc/functions.php';
   <main>
     <div>
     <?php
-    require_once 'inc/messages.php';
+    require_once ADMIN_ROOT . '/inc/messages.php';
 
     /**
      * Create admin if there are no users
@@ -220,7 +220,7 @@ require_once 'inc/functions.php';
 
   <footer>
     <?php
-      require_once 'inc/footer.php';
+      require_once ADMIN_ROOT . '/inc/footer.php';
     ?>
   </footer>
 </body>

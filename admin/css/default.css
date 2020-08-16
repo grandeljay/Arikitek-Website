@@ -3,12 +3,12 @@ body {
   grid-template-columns: 1fr 3fr;
   grid-template-rows: 100vh;
   grid-auto-rows: max-content;
-  
+
   margin: 0;
-  
+
   font-family: sans-serif;
   font-size: 12pt;
-  
+
   background-color: #f4f4f4;
 }
 
@@ -21,16 +21,18 @@ body main :first-child {
   margin-top: 0;
 }
 
+body#pageInstall,
 body#pageLogin {
   display: block;
 }
 
 
+body#pageInstall main,
 body#pageLogin main {
   display: grid;
   grid-template-columns: 512px;
-  grid-template-rows: auto;
-  grid-auto-rows: auto;
+  grid-template-rows: max-content;
+  grid-auto-rows: max-content;
   grid-gap: 0;
   justify-content: center;
   align-items: center;
@@ -52,9 +54,9 @@ a.button,
 button,
 textarea {
   padding: 0.6rem 0.8rem;
-  
+
   font-size: inherit;
-  
+
   background-color: #fff;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
@@ -65,14 +67,14 @@ a.button,
 button,
 textarea {
   width: 100%;
-  
+
   box-sizing: border-box;
 }
 
 a.button,
 button {
   max-width: 256px;
-  
+
   cursor: pointer;
 }
 
@@ -83,7 +85,7 @@ button[type="submit"] {
 
 a.button {
   display: block;
-  
+
   color: inherit;
   text-decoration: none;
   text-align: center;
@@ -114,14 +116,14 @@ form {
 textarea,
 input {
   transition: border-left-color 0.2s;
-  
+
   font-family: inherit;
-  
+
   border-left-width: 4px;
 }
 
 textarea:placeholder-shown,
-input:placeholder-shown { 
+input:placeholder-shown {
   border-left-color: #d9d9d9;
 }
 
@@ -131,10 +133,16 @@ input:invalid {
   box-shadow: none;
 }
 
+form fieldset {
+  margin: unset;
+  padding: unset;
+  border: unset;
+}
+
 hr {
   width: 100%;
   margin: 2rem 0;
-  
+
   border: none;
   border-top: 1px solid #f4f4f4;
 }
@@ -153,15 +161,15 @@ table th {
  */
 section.block {
   width: 100%;
-  
+
   padding: 2rem;
   margin-bottom: 2rem;
-  
+
   box-sizing: border-box;
-  
+
   background-color: #fff;
   border: 1px solid #d9d9d9;
-  border-radius: 4px;  
+  border-radius: 4px;
 }
 
 section.block :first-child {
@@ -176,10 +184,17 @@ section.block :last-child {
 /**
  * Messages
  */
-.message.important {
-  color: #fff;
-  background-color: #ff5555;
-  border-color: #f00;
+.message.important,
+.message.failure {
+  color: #2b0000;
+  border-color: #ffaaaa;
+  background-color: #fed5d5;
+}
+
+.message.info {
+  color: #0b2228;
+  border-color: #afdde9;
+  background-color: #d7eef4;
 }
 
 
@@ -191,22 +206,22 @@ header {
   grid-template-columns: auto;
   grid-template-rows: auto max-content;
   grid-gap: 2rem;
-  
+
   padding: 2rem;
-  
+
   background-color: #fff;
 }
 
 header nav ul {
   margin: 0;
   padding: 0;
-  
+
   list-style-type: none;
 }
 
 header nav ul li a {
   display: block;
-  
+
   padding: 1.6rem;
   margin-bottom: 1rem;
 }

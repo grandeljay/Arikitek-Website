@@ -7,12 +7,12 @@ require_once 'inc/functions.php';
 <html lang="en">
 <head>
   <?php
-    require_once 'inc/head.php';
+    require_once ADMIN_ROOT . '/inc/head.php';
   ?>
 </head>
 <body>
   <?php
-    require_once 'inc/authenticate.php';
+    require_once ADMIN_ROOT . '/inc/authenticate.php';
   ?>
   
   <?php
@@ -21,7 +21,7 @@ require_once 'inc/functions.php';
   
   <header>
     <?php
-      require_once 'inc/navigation.php';
+      require_once ADMIN_ROOT . '/inc/navigation.php';
     ?>  
   </header>
   
@@ -29,7 +29,7 @@ require_once 'inc/functions.php';
     <h1>Settings</h1>
     
     <?php
-      require_once 'inc/messages.php';
+      require_once ADMIN_ROOT . '/inc/messages.php';
     ?>  
     
     <p>Hello <?php echo $_SESSION['username']; ?>.</p>
@@ -83,7 +83,7 @@ require_once 'inc/functions.php';
   
   <footer>
     <?php
-      require_once 'inc/footer.php';
+      require_once ADMIN_ROOT . '/inc/footer.php';
     ?>
   </footer>
 </body>
