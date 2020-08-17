@@ -14,55 +14,52 @@ require_once 'inc/functions.php';
   <?php
     require_once ADMIN_ROOT . '/inc/authenticate.php';
   ?>
-  
+
   <?php
     $_SESSION['username'] = $_SESSION['email'];
-  ?>  
-  
+  ?>
+
   <header>
     <?php
       require_once ADMIN_ROOT . '/inc/navigation.php';
-    ?>  
+    ?>
   </header>
-  
+
   <main>
     <h1>Settings</h1>
-    
+
     <?php
       require_once ADMIN_ROOT . '/inc/messages.php';
-    ?>  
-    
+    ?>
+
     <p>Hello <?php echo $_SESSION['username']; ?>.</p>
-    
+
     <?php
-    $sql = 'SHOW TABLES';
-    $tables = $dbh->prepare($sql);
-    $tables->execute();
-    $tablesArray = $tables->fetchAll();
-    
+    $tablesArray = databaseQuery( 'SHOW TABLES' );
+
     /**
      * Drop Table
      */
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      if (isset($_POST['tableDrop'])) {
-        $sql = "DROP TABLE " . $_POST['tableName'];
-        $execute = $dbh->prepare($sql);
-        $execute->execute();
-        
-        unset($_SESSION['email']);
-        
-        message(array(
+    if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+      if ( isset( $_POST['tableDrop'] ) ) {
+        databaseQuery( 'DROP TABLE ' . $_POST['tableName'] );
+
+        unset( $_SESSION['email'] );
+
+        $_SESSION['messages'][] = [
           'heading' => 'You asked for it',
-          'message' => array(
+          'message' => [
             'Table has been dropped.',
             'You have been logged out, since all users were just deleted, including the admin.',
-          ),
+          ],
           'type' => 'important'
-        ));
+        ];
+
+        redirect( '/admin/index.php' );
       }
     }
     ?>
-    
+
     <section class="block">
       <h2>Drop table</h2>
       <p>Select a table you would like to remove. For obvious reasons, this action can not be undone.</p>
@@ -70,17 +67,17 @@ require_once 'inc/functions.php';
         <input type="hidden" name="tableDrop">
         <select name="tableName">
           <?php
-          for ($i = 0; $i < count($tablesArray); $i++) {            
+          for ($i = 0; $i < count($tablesArray); $i++) {
             echo '<option value="' . $tablesArray[$i][0] . '">' . $tablesArray[$i][0] . '</option>';
           }
           ?>
         </select>
-        
+
         <button type="submit" class="critical">Delete entire table</button>
       </form>
     </section>
   </main>
-  
+
   <footer>
     <?php
       require_once ADMIN_ROOT . '/inc/footer.php';

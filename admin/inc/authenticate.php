@@ -13,8 +13,7 @@ $redirectFromScriptIfLoggedIn = array(
 );
 
 if ( isset( $_SESSION['email'] ) && in_array( $_SERVER['SCRIPT_NAME'], $redirectFromScriptIfLoggedIn) ) {
-  header( 'Location: /admin/index.php' );
-  die();
+  redirect( '/admin/index.php' );
 }
 
 
@@ -23,10 +22,7 @@ if ( isset( $_SESSION['email'] ) && in_array( $_SERVER['SCRIPT_NAME'], $redirect
  * If there is at least 1 user
  */
 if ( !isset($_SESSION['email']) ) {
-  if ( $_SERVER['SCRIPT_NAME'] != '/admin/login.php' ) {
-    header( 'Location: /admin/login.php' );
-    die();
-  }
+  redirect( '/admin/login.php' );
 }
 
 

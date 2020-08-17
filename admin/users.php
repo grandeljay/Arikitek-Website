@@ -40,10 +40,7 @@ require_once 'inc/functions.php';
       /**
        * Get Users
        */
-      $sql = 'SELECT * FROM users;';
-      $users = $dbh->prepare($sql);
-      $users->execute();
-      $usersArray = $users->fetchAll();
+      $usersArray = databaseQuery( 'SELECT * FROM users;' );
       $skipColumns = array(
         'password',
       );
@@ -102,10 +99,7 @@ require_once 'inc/functions.php';
       /**
        * Get unverified users
        */
-      $sql = 'SELECT * FROM users;';
-      $users = $dbh->prepare($sql);
-      $users->execute();
-      $usersArray = $users->fetchAll();
+      $usersArray = databaseQuery( 'SELECT * FROM users;' );
 
 
       /**

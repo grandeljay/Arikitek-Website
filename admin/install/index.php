@@ -26,14 +26,14 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
  * Messages
  */
 if ( file_exists( ADMIN_ROOT . '/inc/configure.php' ) ) {
-  $GLOBALS['messages'][] = array(
+  $_SESSION['messages'][] = array(
      'heading' => 'Cannot connect to database',
      'message' => 'The crededentials for the database do not seem to work.',
      'type' => 'error'
   );
 }
 else {
-  $GLOBALS['messages'][] = array(
+  $_SESSION['messages'][] = array(
      'heading' => 'Cannot connect to database',
      'message' => 'It\'s not been possible to establish a database connection. Probably because it hasn\'t been setup yet.',
      'type' => 'info'

@@ -25,11 +25,11 @@ require_once 'inc/functions.php';
   /**
    * Process Forms
    */
-  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
     /**
      * Log in
      */
-    if (isset($_POST['logIn'])) {
+    if ( isset( $_POST['logIn'] ) ) {
       $values = array(
         'email' => $_POST['email'],
         'password' => hash('ripemd160', $_POST['password']),
@@ -41,18 +41,17 @@ require_once 'inc/functions.php';
         $email = $rowArray['email'];
         $password = $rowArray['password'];
 
-        if ($email == $values['email'] && $password == $values['password']) {
+        if ( $email == $values['email'] && $password == $values['password'] ) {
           $isVerified = $rowArray['verified'];
           $loginSuccessfull = true;
           break;
         }
       }
 
-      if ($loginSuccessfull && $isVerified) {
+      if ( $loginSuccessfull && $isVerified ) {
         $_SESSION['email'] = $values['email'];
 
-        header('Location: /admin/index.php');
-        die();
+        redirect( '/admin/index.php' );
       }
 
 
@@ -60,7 +59,7 @@ require_once 'inc/functions.php';
        * Error Messages
        */
       if ( !$loginSuccessfull ) {
-        $GLOBALS['messages'][] = array(
+        $_SESSION['messages'][] = array(
           'heading' => 'Failure',
           'message' => 'Log in attempt failed.',
           'type' => 'failure'
@@ -68,7 +67,7 @@ require_once 'inc/functions.php';
       }
 
       if ( !$isVerified ) {
-        $GLOBALS['messages'][] = array(
+        $_SESSION['messages'][] = array(
           'heading' => 'Failure',
           'message' => 'You are not verified.',
           'type' => 'failure'
@@ -80,22 +79,25 @@ require_once 'inc/functions.php';
     /**
      * Create admin user
      */
-    if (isset($_POST['createAdminUser'])) {
-      $values = array(
+    if ( isset( $_POST['createAdminUser'] ) ) {
+      $values = [
         true,
         $_POST['email'],
-        hash('ripemd160', $_POST['password']),
-      );
+        hash( 'ripemd160', $_POST['password'] ),
+      ];
 
-      $sql = "INSERT INTO users (verified, email, password) VALUES ('" . implode("', '", $values) . "')";
-      $execute = $dbh->prepare($sql);
-      $execute->execute();
+      databaseQuery( 'INSERT INTO users (verified, email, password) VALUES ("' . implode( '","', $values ) . '")' );
 
       /**
        * Show message that account was created on login.php
        */
-      header('Location: /admin/index.php');
-      die();
+      $_SESSION['messages'][] = [
+        'heading' => 'Success',
+        'message' => 'Admin account successfully created.',
+        'type' => 'success'
+      ];
+
+      redirect( '/admin/index.php' );
     }
 
 
@@ -109,15 +111,14 @@ require_once 'inc/functions.php';
         hash('ripemd160', $_POST['password']),
       );
 
-      $sql = "INSERT INTO users (verified, email, password) VALUES ('" . implode("', '", $values) . "')";
-      $execute = $dbh->prepare($sql);
-      $execute->execute();
+      databaseQuery( 'INSERT INTO users (verified, email, password) VALUES ("' . implode( '", "', $values) . '");' );
 
-      /**
-       * Show message that account was created on login.php
-       */
-      header('Location: /admin/index.php');
-      die();
+      $_SESSION['messages'][] = [
+        'heading' => 'Review required',
+        'message' => 'Your account has been created and needs to be reviewed by an admin before you can log in.',
+        'type' => 'info'
+      ];
+      redirect( '/admin/index.php' );
     }
 
 
@@ -178,7 +179,7 @@ require_once 'inc/functions.php';
 
           <hr>
 
-          <a href="/index.php" class="button full">Go back</a>
+          <a href="/admin/index.php" class="button full">Go back</a>
         </section>
         <?php
       }
@@ -188,7 +189,7 @@ require_once 'inc/functions.php';
     /**
      * Log in if there are users
      */
-    if (count($usersArray) > 0 && !isset($_POST['requestToJoinButton'])) {
+    if ( count($usersArray) > 0 && !isset( $_POST['requestToJoinButton'] ) ) {
       ?>
       <section class="block">
         <h1>Log in</h1>

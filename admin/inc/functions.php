@@ -28,9 +28,9 @@ if ( file_exists( ADMIN_ROOT . '/inc/configure.php' ) ) {
    * Connect to Database
    */
   databaseQuery('CREATE TABLE IF NOT EXISTS users (
-    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    id INT(11) AUTO_INCREMENT PRIMARY KEY UNIQUE,
     verified boolean NOT NULL DEFAULT FALSE,
-    email VARCHAR (128) NOT NULL,
+    email VARCHAR (128) NOT NULL UNIQUE,
     password VARCHAR (256) NOT NULL
   );');
 }
@@ -51,7 +51,7 @@ defined( 'SESSION_EXPIRE_IN' ) or define( 'SESSION_EXPIRE_IN', 1800 );
 /**
  * Variables
  */
-$GLOBALS['messages'] = array();
+$_SESSION['messages'] = array();
 
 
 /**
@@ -114,8 +114,7 @@ function logOutCurrentUser() {
   session_unset();
   session_destroy();
 
-  header( 'Location: /admin/login.php' );
-  die();
+  redirect('/admin/login.php');
 }
 
 
@@ -132,14 +131,12 @@ function databaseQuery( $query ) {
     $dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
     $result = $dbh->prepare( $query );
+    $return = $result->execute();
 
     switch ( $type ) {
+      case 'show':
       case 'select':
         $return = $result->fetchAll();
-        break;
-
-      default:
-        $return = $result->execute();
         break;
     }
   }
@@ -148,7 +145,7 @@ function databaseQuery( $query ) {
 
     switch ( $exception->getCode() ) {
       case 1049:
-        $GLOBALS['messages'][] = array(
+        $_SESSION['messages'][] = array(
           'heading' => 'Error',
           'message' => $exception->getMessage(),
           'type' => 'failure'
