@@ -19,10 +19,7 @@ require_once 'inc/functions.php';
   /**
    * Get Users
    */
-  $sql = 'SELECT * FROM users;';
-  $users = $dbh->prepare($sql);
-  $users->execute();
-  $usersArray = $users->fetchAll();
+  $usersArray = databaseQuery( 'SELECT * FROM users;' );
 
 
   /**
@@ -40,7 +37,7 @@ require_once 'inc/functions.php';
       $loginSuccessfull = false;
       $isVerified = true;
 
-      foreach ($usersArray as $rowArray) {
+      foreach( $usersArray as $rowArray ) {
         $email = $rowArray['email'];
         $password = $rowArray['password'];
 
@@ -141,7 +138,7 @@ require_once 'inc/functions.php';
     /**
      * Create admin if there are no users
      */
-    if (count($usersArray) === 0) {
+    if ( count( $usersArray ) === 0 ) {
       ?>
       <section class="block">
         <h1>Create admin user</h1>

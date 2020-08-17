@@ -3,11 +3,43 @@
 <?php
 require_once '../inc/functions.php';
 
-$GLOBALS['messages'][] = array(
-  'heading' => 'Cannot connect to database',
-  'message' => 'It\'s not been possible to establish a database connection. Probably because it hasn\'t been setup yet.',
-  'type' => 'info'
-);
+if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+  switch ( $_POST['form'] ) {
+    case 'database':
+      $data = [];
+
+      unset( $_POST['form'] );
+
+      foreach ($_POST as $key => $value) {
+        $data[] = 'define( \'DB_' . strtoupper($key) . '\', \'' . $value . '\' );';
+      }
+
+      file_put_contents( ADMIN_ROOT . '/inc/configure.php', '<?php' . PHP_EOL . implode( PHP_EOL, $data ) . PHP_EOL . '?>' );
+
+      redirect( '/admin/index.php' );
+      break;
+  }
+}
+
+
+/**
+ * Messages
+ */
+if ( file_exists( ADMIN_ROOT . '/inc/configure.php' ) ) {
+  $GLOBALS['messages'][] = array(
+     'heading' => 'Cannot connect to database',
+     'message' => 'The crededentials for the database do not seem to work.',
+     'type' => 'error'
+  );
+}
+else {
+  $GLOBALS['messages'][] = array(
+     'heading' => 'Cannot connect to database',
+     'message' => 'It\'s not been possible to establish a database connection. Probably because it hasn\'t been setup yet.',
+     'type' => 'info'
+  );
+}
+
 ?>
 
 <html lang="en">
@@ -27,12 +59,14 @@ $GLOBALS['messages'][] = array(
     <section class="block">
       <h1>Establish a database connection</h1>
       <form method="post">
-        <input type="text" name="" value="" placeholder="Host" required>
-        <input type="text" name="" value="" placeholder="Name" required>
-        <input type="text" name="" value="" placeholder="User" required>
-        <input type="text" name="" value="" placeholder="Password" required>
+        <input type="hidden" name="form" value="database">
 
-        <button type="submit" name="">Connect</button>
+        <input type="text" name="host" value="" placeholder="Host" required>
+        <input type="text" name="name" value="" placeholder="Name" required>
+        <input type="text" name="user" value="" placeholder="User" required>
+        <input type="text" name="password" value="" placeholder="Password" required>
+
+        <button type="submit" class="full">Connect</button>
       </form>
     </section>
   </main>

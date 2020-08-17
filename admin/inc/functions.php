@@ -17,52 +17,28 @@ defined( 'ADMIN_ROOT' ) OR define( 'ADMIN_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/a
 /**
  * Configuration
  */
-require_once ADMIN_ROOT . '/configure.php';
+if ( file_exists( ADMIN_ROOT . '/inc/configure.php' ) ) {
+  /**
+   * Load
+   */
+  require_once ADMIN_ROOT . '/inc/configure.php';
 
 
-/**
- * Connect to Database
- */
-if ( DB_HOST && DB_NAME && DB_USER && DB_PASSWORD ) {
-  $dbh;
-  $dsn = 'mysql:dbname=' . DB_NAME . ';host=' . DB_HOST;
-  $user = DB_USER;
-  $password = DB_PASSWORD;
-
-  try {
-    $dbh = new PDO( $dsn, $user, $password );
-    $dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-
-
-    /**
-     * Create users table
-     */
-    $sql = 'CREATE TABLE IF NOT EXISTS users (
-      id INT(11) AUTO_INCREMENT PRIMARY KEY,
-      verified boolean NOT NULL DEFAULT FALSE,
-      email VARCHAR (128) NOT NULL,
-      password VARCHAR (256) NOT NULL
-    );';
-    $dbh->exec($sql);
-  }
-  catch ( PDOException $exception ) {
-    echo 'Connection failed: ' . $exception->getMessage();
-
-    switch ( $exception->getCode() ) {
-      case 1049:
-        $GLOBALS['messages'][] = array(
-          'heading' => 'Error',
-          'message' => $exception->getMessage(),
-          'type' => 'failure'
-        );
-      
-        redirect( '/admin/install' );
-        break;
-    }
-  }
+  /**
+   * Connect to Database
+   */
+  databaseQuery('CREATE TABLE IF NOT EXISTS users (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    verified boolean NOT NULL DEFAULT FALSE,
+    email VARCHAR (128) NOT NULL,
+    password VARCHAR (256) NOT NULL
+  );');
 }
 else {
-  redirect( '/admin/install' );
+  /**
+   * Run installer
+   */
+   redirect( '/admin/install' );
 }
 
 
@@ -147,10 +123,39 @@ function logOutCurrentUser() {
  * Database query
  */
 function databaseQuery( $query ) {
-  global $dbh;
+  $dbh;
+  $return = false;
+  $type = strtolower( explode( ' ', $query )[0] );
 
-  $result = $dbh->prepare( $query );
-  $return = $result->execute();
+  try {
+    $dbh = new PDO( 'mysql:dbname=' . DB_NAME . ';host=' . DB_HOST, DB_USER, DB_PASSWORD );
+    $dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+
+    $result = $dbh->prepare( $query );
+
+    switch ( $type ) {
+      case 'select':
+        $return = $result->fetchAll();
+        break;
+
+      default:
+        $return = $result->execute();
+        break;
+    }
+  }
+  catch ( PDOException $exception ) {
+    $return = 'Connection failed: ' . $exception->getMessage();
+
+    switch ( $exception->getCode() ) {
+      case 1049:
+        $GLOBALS['messages'][] = array(
+          'heading' => 'Error',
+          'message' => $exception->getMessage(),
+          'type' => 'failure'
+        );
+        break;
+    }
+  }
 
   return $return;
 }
